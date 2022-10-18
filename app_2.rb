@@ -55,6 +55,7 @@ while user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 
         user.attack(player2)
     else puts "ERREUR: Recommence!"
     end
+    break if player1.life_points <= 0 and player2.life_points <= 0
     puts "**********************************"
 
 #Attaque des autres joueurs

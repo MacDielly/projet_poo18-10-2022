@@ -19,6 +19,7 @@ class Player
 #Affichage du nombre de points
     def show_state
         print "#{@name} a #{@life_points} points de vie." if @life_points > 0
+        print "#{name} est DEAD" if @life_points <= 0
     end
 
 #Décrémentation du nombre de points

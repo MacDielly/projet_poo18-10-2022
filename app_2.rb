@@ -20,12 +20,15 @@ system("clear")
 
 while user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 0)
 
+    puts
+    puts user.show_state
+
 #Menu des actions possibles
-    puts "***********************************"
+    puts "\n***********************************"
     puts "Quelle action souhaites tu effectuer?"
     puts
-    puts "a - chercher une meilleure arme"
-    puts "s - chercher de quoi s soigner"
+    puts " a - chercher une meilleure arme."
+    puts " s - chercher de quoi s soigner."
     puts
     puts "Attaquer un joueur en vue :"
     print " 0 - "
@@ -38,6 +41,10 @@ while user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 
 #Choix de l'utilisateur
     print "Tapez votre choix: "
     action_choice = gets.chomp
+    puts
+    puts "**********************************"
+    puts
+    puts "**********************************"
     if action_choice == "a"
         user.search_weapon
     elsif action_choice == "s"
@@ -48,6 +55,22 @@ while user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 
         user.attack(player2)
     else puts "ERREUR: Recommence!"
     end
+    puts "**********************************"
 
+#Attaque des autres joueurs
+    puts
+    puts
+    puts "Les autres joueurs t'attaquent!"
+    puts
+    puts "**********************************"
+    enemies = Player.all_enemies
+    enemies.each do |i|
+        i.attack(user) if i.life_points > 0
+        puts "**********************************"
+    end
+    puts
+    print "Press Enter to continue"
+    temp = gets.chomp
+    system("clear") if temp == ''
 end
 

@@ -2,13 +2,18 @@
 class Player
 
     attr_accessor :name, :life_points
-    enemies = []
+    @@enemies = []
 
 #Initialisation des informations joueurs
     def initialize(name)
         @name = name
         @life_points = 10
         @@enemies << self
+    end
+
+#Sélectionne tous les ennemis.
+    def self.all_enemies
+        @@enemies
     end
 
 #Affichage du nombre de points
@@ -47,6 +52,7 @@ class HumanPlayer < Player
 
 #Initialisation des données du joueur humain
     def initialize(name)
+        @name = name
         @life_points = 100
         @weapon_level = 1
     end
@@ -61,6 +67,7 @@ class HumanPlayer < Player
         rand(1..6) * @weapon_level
     end
 
+#Trouve & garde ou non l'arme  
     def search_weapon
         dice = rand(1..6)
         puts "Tu as trouvé una arme de niveau #{dice}."
@@ -77,8 +84,14 @@ class HumanPlayer < Player
         if dice == 1
             puts "Tu n'as rien trouvé."
         elsif dice >= 2 and dice <= 5
-            @life_points += 50
-            puts "Super, tu gagnes 50 points de vie!"
+            if @life_points == 100
+                @life_points = 100
+            elsif (50 + @life_points) >= 100
+                @life_points = 100
+            elsif (50 + @life_points) < 100
+                @life_points += 50
+            end
+             puts "Super, tu gagnes 50 points de vie!"
         elsif dice == 6
             if @life_points == 100
                @life_points = 100

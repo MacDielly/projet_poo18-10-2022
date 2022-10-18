@@ -80,6 +80,7 @@ class HumanPlayer < Player
         end
     end
 
+#Trouve de la vie
     def search_health_pack
         dice = rand(1..6)
         if dice == 1

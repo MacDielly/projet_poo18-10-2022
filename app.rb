@@ -6,7 +6,7 @@ require_relative 'lib/game'
 player1 = Player.new("Josiane")
 player2 = Player.new("José")
 
-#Boucle de jeu
+#Boucle de jeu pour les attaques successives
 while player1.life_points > 0 && player2.life_points > 0
 
 puts "***********************************"
